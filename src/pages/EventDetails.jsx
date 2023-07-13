@@ -90,7 +90,12 @@ const EventDetails = () => {
                             <p>Speaker Not available</p>
                     }
                     <div className="rsvp">
-                            <button className='bg-red-500 text-white px-12 min-w-[200px] py-2 rounded' onClick={()=>setIsRsvpModel(true)}>{isInRsvp(eventDetails.id) ? 'Already RSVP' : 'RSVP'}</button>
+                        {
+                            isInRsvp(eventDetails.id) ?
+                                <button className='bg-red-300 cursor-not-allowed text-white px-12 min-w-[200px] py-2 rounded'>Already RSVP</button> :
+                                <button className='bg-red-500 text-white px-12 min-w-[200px] py-2 rounded' onClick={()=>setIsRsvpModel(true)}>RSVP</button>
+                        }
+
                         </div>
                 </div>
             </div>

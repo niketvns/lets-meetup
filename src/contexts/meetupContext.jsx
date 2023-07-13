@@ -7,6 +7,7 @@ const MeetupContextProvider = ({children}) => {
     const [meetups, setMeetups] = useState(data.meetups)
     const [searchInput, setSearchInput] = useState('')
     const [rsvpRecord, setRsvpRecord] = useState([])
+    const [selectedEventType, setSelectedEventType] = useState('both')
 
     const findEvent = (eventId) => {
         return meetups.find(event => event.id === eventId)
@@ -24,10 +25,16 @@ const MeetupContextProvider = ({children}) => {
         return rsvpRecord.some(({id}) => id === eventId )
     }
 
-    const filteredEvents = meetups.filter(event => event.title.toUpperCase().includes(searchInput.toUpperCase()))
+    let filteredEvents = meetups.filter(event => event.title.toUpperCase().includes(searchInput.toUpperCase()))
+
+    if(selectedEventType === 'both'){
+        filteredEvents = meetups.filter(event => event.title.toUpperCase().includes(searchInput.toUpperCase()))
+    }else if(selectedEventType === 'Offline' || selectedEventType === 'Online'){
+        filteredEvents = meetups.filter(event => event.eventType === selectedEventType)
+    }
 
     return (
-        <meetupContext.Provider value={{meetups, findEvent, filteredEvents, searchInputHandler, rsvpFormSubmitHandler, isInRsvp}}>
+        <meetupContext.Provider value={{meetups, findEvent, filteredEvents, searchInputHandler, rsvpFormSubmitHandler, isInRsvp, setSelectedEventType}}>
             {children}
         </meetupContext.Provider>
     )
