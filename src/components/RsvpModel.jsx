@@ -28,19 +28,19 @@ const RsvpModel = ({setIsRsvpModel, eventDetails}) => {
                     <GrClose/>
                 </div>
                 <h1 className='text-2xl font-bold'>Complete your RSVP</h1>
-                <h2>Fill in your personal information.</h2>
+                <h2 className='text-black/60'>Fill in your personal information.</h2>
                 <form onSubmit={formSubmitHandler} className='flex flex-col gap-4'>
                     <label htmlFor="name" className='flex flex-col gap-2'>
                         <p>Name:</p>
-                        <input type="text" required name='name' placeholder='ex: John Doe' className='border w-full p-2 rounded' value={formInput.name} onChange={handleFormInput}/>
+                        <input type="text" required name='name' placeholder='ex: John Doe' className='border outline-black/40 w-full p-2 rounded' value={formInput.name} onChange={handleFormInput}/>
                     </label>
                     <label htmlFor="email" className='flex flex-col gap-2'>
                         <p>Email:</p>
-                        <input type="text" required name='email' placeholder='ex: johndoe@email.com' className='border w-full p-2 rounded' value={formInput.email} onChange={handleFormInput}/>
+                        <input type="text" required name='email' placeholder='ex: johndoe@email.com' className='border outline-black/40 w-full p-2 rounded' value={formInput.email} onChange={handleFormInput}/>
                     </label>
                     {
                         eventDetails.isPaid &&
-                        <div className="mark">
+                        <div className="mark text-black/60">
                             * You have to make the payment at the venue
                         </div>
                     }
