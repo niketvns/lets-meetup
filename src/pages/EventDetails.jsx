@@ -13,8 +13,8 @@ const EventDetails = () => {
 
     return (
         <>
-            <div className='event-details px-16 py-8 flex gap-16'>
-                <div className="event-discription w-[50%] flex flex-col gap-4">
+            <div className='event-details px-4 md:px-16 py-8 flex flex-col md:flex-row gap-16'>
+                <div className="event-discription md:w-[50%] flex flex-col gap-4">
                     <h1 className='text-3xl font-bold'>{eventDetails.title}</h1>
                     <div className="host">
                         <p className='font-bold'>Hosted By:</p>
@@ -37,7 +37,7 @@ const EventDetails = () => {
                         <div className="tags flex gap-4">
                             {
                                 eventDetails.eventTags.map(tag => (
-                                    <p className='bg-red-400 text-white p-2 rounded'>marketing</p>
+                                    <p key={tag} className='bg-red-300 text-white p-2 rounded'>marketing</p>
                                 ))
                             }
                         </div>
@@ -45,12 +45,12 @@ const EventDetails = () => {
                 </div>
 
                 <div className="right flex-1 flex flex-col gap-6 items-center">
-                    <div className="event-vanue min-w-[450px] bg-white p-4 px-10 rounded flex flex-col gap-2">
+                    <div className="event-vanue w-full sm:min-w-[450px] bg-white p-4 px-10 rounded flex flex-col gap-2">
                         <div className="event-vanue-timing flex gap-4 items-center">
                             <div className="icon"><BiTimeFive/></div>
                             <div className="timing">
-                                <p>{new Date(eventDetails.eventStartTime).toDateString()} . {new Date(eventDetails.eventStartTime).toLocaleTimeString()}  to</p>
-                                <p>{new Date(eventDetails.eventEndTime).toDateString()} . {new Date(eventDetails.eventEndTime).toLocaleTimeString()}</p>
+                                <p>{new Date(eventDetails.eventStartTime).toDateString()} • {new Date(eventDetails.eventStartTime).toLocaleTimeString()}  to</p>
+                                <p>{new Date(eventDetails.eventEndTime).toDateString()} • {new Date(eventDetails.eventEndTime).toLocaleTimeString()}</p>
                             </div>
                         </div>
                         <div className="marketing-city flex gap-4 items-center">
@@ -71,10 +71,10 @@ const EventDetails = () => {
                         eventDetails.speakers.length ?
                             <div className="speaker flex flex-col gap-2">
                                 <h2 className='text-2xl font-bold'>Speakers: ({eventDetails.speakers.length})</h2>
-                                <div className="all-speakers flex gap-4">
+                                <div className="all-speakers flex flex-wrap justify-center sm:justify-start gap-4">
                                     {
                                             eventDetails.speakers.map(speaker => (
-                                                <div className="speaker rounded bg-white min-w-[200px] flex flex-col justify-center items-center p-2">
+                                                <div key={speaker.name} className="speaker rounded bg-white w-[250px] sm:w-[200px] flex flex-col justify-center items-center p-2 py-6">
                                                     <div className="img w-16">
                                                         <img src={speaker.image} alt="speaker-image" className='aspect-square object-fill rounded-full'/>
                                                     </div>
@@ -92,8 +92,8 @@ const EventDetails = () => {
                     <div className="rsvp">
                         {
                             isInRsvp(eventDetails.id) ?
-                                <button className='bg-red-300 cursor-not-allowed text-white px-12 min-w-[200px] py-2 rounded'>Already RSVP</button> :
-                                <button className='bg-red-500 text-white px-12 min-w-[200px] py-2 rounded' onClick={()=>setIsRsvpModel(true)}>RSVP</button>
+                                <button className='bg-red-300 cursor-not-allowed text-white px-12 min-w-[250px] py-2 rounded'>Already RSVP</button> :
+                                <button className='bg-red-500 text-white px-12 min-w-[250px] py-2 rounded' onClick={()=>setIsRsvpModel(true)}>RSVP</button>
                         }
 
                         </div>
