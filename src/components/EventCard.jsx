@@ -9,7 +9,7 @@ const EventCard = ({event}) => {
                 <img src={event.eventThumbnail} alt="event-image" className='w-full h-52 object-cover rounded-t-lg'/>
             </div>
             <div className="details">
-                <p>{event.eventStartTime}</p>
+                <p>{new Date(event.eventStartTime).toDateString()} . {new Date(event.eventStartTime).toLocaleTimeString()} IST</p>
                 <h2 className='text-xl font-bold'>{event.title}</h2>
             </div>
         </div>

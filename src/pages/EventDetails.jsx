@@ -49,8 +49,8 @@ const EventDetails = () => {
                         <div className="event-vanue-timing flex gap-4 items-center">
                             <div className="icon"><BiTimeFive/></div>
                             <div className="timing">
-                                <p>{eventDetails.eventStartTime} to</p>
-                                <p>{eventDetails.eventEndTime}</p>
+                                <p>{new Date(eventDetails.eventStartTime).toDateString()} . {new Date(eventDetails.eventStartTime).toLocaleTimeString()}  to</p>
+                                <p>{new Date(eventDetails.eventEndTime).toDateString()} . {new Date(eventDetails.eventEndTime).toLocaleTimeString()}</p>
                             </div>
                         </div>
                         <div className="marketing-city flex gap-4 items-center">
