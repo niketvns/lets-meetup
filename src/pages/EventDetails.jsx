@@ -7,7 +7,7 @@ import {useState} from "react";
 
 const EventDetails = () => {
     const [isRsvpModel, setIsRsvpModel] = useState(false)
-    const {findEvent} = useGlobalMeetup()
+    const {findEvent, isInRsvp} = useGlobalMeetup()
     const {eventId} = useParams()
     const eventDetails = findEvent(eventId)
 
@@ -20,8 +20,8 @@ const EventDetails = () => {
                         <p className='font-bold'>Hosted By:</p>
                         <p>{eventDetails.hostedBy}</p>
                     </div>
-                    <div className="image">
-                        <img src={eventDetails.eventThumbnail} alt="event-image"/>
+                    <div className="image w-full">
+                        <img src={eventDetails.eventThumbnail} alt="event-image" className='w-full'/>
                     </div>
                     <div className="details">
                         <h2 className='text-xl font-bold'>Details:</h2>
@@ -57,7 +57,7 @@ const EventDetails = () => {
                             <div className="icon"><ImLocation2/></div>
                             <div className="city-name">
                                 <p>Marketing City</p>
-                                <p>{eventDetails.address}</p>
+                                <p>{eventDetails.address ? eventDetails.address : eventDetails.location}</p>
                             </div>
                         </div>
                         <div className="price-details flex gap-4 items-center">
@@ -67,27 +67,31 @@ const EventDetails = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="speaker flex flex-col gap-2">
-                        <h2 className='text-2xl font-bold'>Speakers: ({eventDetails.speakers.length})</h2>
-                        <div className="all-speakers flex gap-4">
-                            {
-                                eventDetails.speakers.map(speaker => (
-                                    <div className="speaker rounded bg-white min-w-[200px] flex flex-col justify-center items-center p-2">
-                                        <div className="img w-16">
-                                            <img src={speaker.image} alt="speaker-image" className='aspect-square object-fill rounded-full'/>
-                                        </div>
-                                        <div className="speaker-details w-full flex justify-center flex-col items-center px-4">
-                                            <h2 className='font-bold'>{speaker.name}</h2>
-                                            <h2>{speaker.designation}</h2>
-                                        </div>
-                                    </div>
-                                ))
-                            }
-                        </div>
-                    </div>
+                    {
+                        eventDetails.speakers.length ?
+                            <div className="speaker flex flex-col gap-2">
+                                <h2 className='text-2xl font-bold'>Speakers: ({eventDetails.speakers.length})</h2>
+                                <div className="all-speakers flex gap-4">
+                                    {
+                                            eventDetails.speakers.map(speaker => (
+                                                <div className="speaker rounded bg-white min-w-[200px] flex flex-col justify-center items-center p-2">
+                                                    <div className="img w-16">
+                                                        <img src={speaker.image} alt="speaker-image" className='aspect-square object-fill rounded-full'/>
+                                                    </div>
+                                                    <div className="speaker-details w-full flex justify-center flex-col items-center px-4">
+                                                        <h2 className='font-bold'>{speaker.name}</h2>
+                                                        <h2>{speaker.designation}</h2>
+                                                    </div>
+                                                </div>
+                                            ))
+                                    }
+                                </div>
+                            </div> :
+                            <p>Speaker Not available</p>
+                    }
                     <div className="rsvp">
-                        <button className='bg-red-500 text-white px-12 min-w-[200px] py-2 rounded' onClick={()=>setIsRsvpModel(true)}>RSVP</button>
-                    </div>
+                            <button className='bg-red-500 text-white px-12 min-w-[200px] py-2 rounded' onClick={()=>setIsRsvpModel(true)}>{isInRsvp(eventDetails.id) ? 'Already RSVP' : 'RSVP'}</button>
+                        </div>
                 </div>
             </div>
             { isRsvpModel && <RsvpModel setIsRsvpModel={setIsRsvpModel} eventDetails={eventDetails}/>}

@@ -1,15 +1,24 @@
 import {GrClose} from 'react-icons/gr'
 import {useState} from "react";
+import {useGlobalMeetup} from "../contexts/meetupContext.jsx";
+import {flushSync} from "react-dom";
 
 const RsvpModel = ({setIsRsvpModel, eventDetails}) => {
     const [formInput, setFormInput] = useState({
         name: '',
         email: ''
     })
+    const {rsvpFormSubmitHandler} = useGlobalMeetup()
 
     const handleFormInput = (e) => {
         const {name, value} = e.target
         setFormInput(prevState => ({...prevState, [name]: value}))
+    }
+
+    const formSubmitHandler = (e) => {
+        e.preventDefault()
+        rsvpFormSubmitHandler({id: eventDetails.id, ...formInput})
+        setIsRsvpModel(false)
     }
 
     return (
@@ -20,7 +29,7 @@ const RsvpModel = ({setIsRsvpModel, eventDetails}) => {
                 </div>
                 <h1 className='text-2xl font-bold'>Complete your RSVP</h1>
                 <h2>Fill in your personal information.</h2>
-                <form action="" className='flex flex-col gap-4'>
+                <form onSubmit={formSubmitHandler} className='flex flex-col gap-4'>
                     <label htmlFor="name" className='flex flex-col gap-2'>
                         <p>Name:</p>
                         <input type="text" required name='name' placeholder='ex: John Doe' className='border w-full p-2 rounded' value={formInput.name} onChange={handleFormInput}/>

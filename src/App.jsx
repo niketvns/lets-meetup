@@ -6,7 +6,7 @@ import EventDetails from "./pages/EventDetails.jsx";
 
 const App = () => {
     return (
-        <div className='bg-black/10'>
+        <div className='bg-black/10 min-h-[100vh]'>
             <Navbar/>
             <Routes>
                 <Route path='/' element={<Home/>}/>
