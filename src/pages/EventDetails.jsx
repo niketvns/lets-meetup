@@ -45,7 +45,7 @@ const EventDetails = () => {
                 </div>
 
                 <div className="right flex-1 flex flex-col gap-6 items-center">
-                    <div className="event-vanue w-[450px] bg-white p-4 px-10 rounded w-full flex flex-col gap-2">
+                    <div className="event-vanue min-w-[450px] bg-white p-4 px-10 rounded flex flex-col gap-2">
                         <div className="event-vanue-timing flex gap-4 items-center">
                             <div className="icon"><BiTimeFive/></div>
                             <div className="timing">

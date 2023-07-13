@@ -28,9 +28,9 @@ const MeetupContextProvider = ({children}) => {
     let filteredEvents = meetups.filter(event => event.title.toUpperCase().includes(searchInput.toUpperCase()))
 
     if(selectedEventType === 'both'){
-        filteredEvents = meetups.filter(event => event.title.toUpperCase().includes(searchInput.toUpperCase()))
+        filteredEvents = filteredEvents.filter(event => event.title.toUpperCase().includes(searchInput.toUpperCase()))
     }else if(selectedEventType === 'Offline' || selectedEventType === 'Online'){
-        filteredEvents = meetups.filter(event => event.eventType === selectedEventType)
+        filteredEvents = filteredEvents.filter(event => event.eventType === selectedEventType)
     }
 
     return (
