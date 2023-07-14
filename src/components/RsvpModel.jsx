@@ -23,7 +23,7 @@ const RsvpModel = ({setIsRsvpModel, eventDetails}) => {
 
     return (
         <div className='fixed inset-0 bg-black/20 p-2 flex justify-center items-center'>
-            <div className="rsvp-form w-full sm:min-w-[400px] bg-white p-8 rounded flex flex-col gap-4 relative">
+            <div className="rsvp-form w-full sm:max-w-[400px] bg-white p-8 rounded flex flex-col gap-4 relative">
                 <div className="close-icon absolute top-2 right-2 bg-black/10 p-2 rounded-full cursor-pointer hover:bg-black/20 transition duration-700" onClick={()=>setIsRsvpModel(false)}>
                     <GrClose/>
                 </div>
