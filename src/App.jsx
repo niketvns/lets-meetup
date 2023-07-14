@@ -3,6 +3,7 @@ import Home from "./pages/Home.jsx";
 import {Route, Routes} from "react-router-dom";
 import Navbar from "./components/Navbar.jsx";
 import EventDetails from "./pages/EventDetails.jsx";
+import Footer from "./components/Footer.jsx";
 
 const App = () => {
     return (
@@ -12,6 +13,7 @@ const App = () => {
                 <Route path='/' element={<Home/>}/>
                 <Route path='/event-details/:eventId' element={<EventDetails/>}/>
             </Routes>
+            <Footer/>
         </div>
     );
 };
